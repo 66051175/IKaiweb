@@ -1,0 +1,332 @@
+// FreshFlow Retail — Central Mock Data
+// All data is simulated for demo purposes
+
+export const STORE = {
+  id: 'S001',
+  name: 'FreshFlow Store #001',
+  location: 'Central Bangkok',
+  manager: 'Somchai Jaidee',
+};
+
+export const PRODUCTS = [
+  { id: 'p1', name: 'Fresh Milk', emoji: '🥛', category: 'Dairy', price: 45, shelfLife: 2 },
+  { id: 'p2', name: 'Salmon Sushi', emoji: '🍣', category: 'Ready Meal', price: 99, shelfLife: 0.08 },
+  { id: 'p3', name: 'Caesar Salad', emoji: '🥗', category: 'Ready Meal', price: 120, shelfLife: 0.13 },
+  { id: 'p4', name: 'Orange Juice', emoji: '🥤', category: 'Beverage', price: 55, shelfLife: 7 },
+  { id: 'p5', name: 'Croissant', emoji: '🥐', category: 'Bakery', price: 35, shelfLife: 0.04 },
+  { id: 'p6', name: 'Greek Yogurt', emoji: '🍦', category: 'Dairy', price: 65, shelfLife: 5 },
+  { id: 'p7', name: 'Mango Sticky Rice', emoji: '🍚', category: 'Dessert', price: 80, shelfLife: 0.08 },
+  { id: 'p8', name: 'Sparkling Water', emoji: '💧', category: 'Beverage', price: 30, shelfLife: 365 },
+  { id: 'p9', name: 'Blueberry Muffin', emoji: '🧁', category: 'Bakery', price: 55, shelfLife: 0.08 },
+  { id: 'p10', name: 'Fresh Strawberries', emoji: '🍓', category: 'Fruit', price: 120, shelfLife: 3 },
+];
+
+export const AISLES = [
+  {
+    id: 'A1', name: 'Aisle 1', label: 'Dairy',
+    status: 'normal', // normal | low | expiring | critical | promo
+    stock: 38, maxStock: 40,
+    productId: 'p1',
+    salesVelocity: 2,
+    expiryHours: 48,
+  },
+  {
+    id: 'A2', name: 'Aisle 2', label: 'Snacks',
+    status: 'normal',
+    stock: 52, maxStock: 60,
+    productId: 'p8',
+    salesVelocity: 3,
+    expiryHours: 8760,
+  },
+  {
+    id: 'A3', name: 'Aisle 3', label: 'Sushi',
+    status: 'expiring',
+    stock: 12, maxStock: 30,
+    productId: 'p2',
+    salesVelocity: 6,
+    expiryHours: 2,
+  },
+  {
+    id: 'A4', name: 'Aisle 4', label: 'Milk',
+    status: 'critical',
+    stock: 3, maxStock: 40,
+    productId: 'p1',
+    salesVelocity: 8,
+    expiryHours: 48,
+  },
+  {
+    id: 'A5', name: 'Aisle 5', label: 'Drinks',
+    status: 'normal',
+    stock: 44, maxStock: 50,
+    productId: 'p4',
+    salesVelocity: 3,
+    expiryHours: 168,
+  },
+  {
+    id: 'A6', name: 'Aisle 6', label: 'Fruit',
+    status: 'low',
+    stock: 8, maxStock: 30,
+    productId: 'p10',
+    salesVelocity: 4,
+    expiryHours: 72,
+  },
+  {
+    id: 'A7', name: 'Aisle 7', label: 'Bakery',
+    status: 'expiring',
+    stock: 14, maxStock: 40,
+    productId: 'p5',
+    salesVelocity: 5,
+    expiryHours: 1,
+  },
+  {
+    id: 'A8', name: 'Aisle 8', label: 'Salads',
+    status: 'promo',
+    stock: 18, maxStock: 30,
+    productId: 'p3',
+    salesVelocity: 5,
+    expiryHours: 3,
+  },
+  {
+    id: 'A9', name: 'Aisle 9', label: 'Yogurt',
+    status: 'normal',
+    stock: 26, maxStock: 30,
+    productId: 'p6',
+    salesVelocity: 2,
+    expiryHours: 120,
+  },
+];
+
+export const ALERTS = [
+  {
+    id: 'al1',
+    type: 'critical',
+    aisleId: 'A4',
+    productId: 'p1',
+    message: 'Fresh Milk stock critically low',
+    detail: 'Only 3 units left — estimated stockout in ~22 min',
+    time: '10 min ago',
+    status: 'open', // open | notified | resolved
+    estimatedMinutes: 22,
+  },
+  {
+    id: 'al2',
+    type: 'warning',
+    aisleId: 'A3',
+    productId: 'p2',
+    message: 'Salmon Sushi approaching expiry',
+    detail: '12 units will expire in 2 hours',
+    time: '25 min ago',
+    status: 'open',
+    estimatedMinutes: 120,
+  },
+  {
+    id: 'al3',
+    type: 'warning',
+    aisleId: 'A7',
+    productId: 'p5',
+    message: 'Croissants expire in 1 hour',
+    detail: '14 units at risk — recommend 50% flash deal',
+    time: '32 min ago',
+    status: 'notified',
+    estimatedMinutes: 60,
+  },
+  {
+    id: 'al4',
+    type: 'success',
+    aisleId: 'A2',
+    productId: 'p4',
+    message: 'Orange Juice restocked',
+    detail: 'Restocked by Staff Alex — 45 units added',
+    time: '42 min ago',
+    status: 'resolved',
+    estimatedMinutes: null,
+  },
+  {
+    id: 'al5',
+    type: 'ai',
+    aisleId: 'A8',
+    productId: 'p3',
+    message: 'AI increased Caesar Salad discount',
+    detail: 'Raised from 20% → 30% due to rain forecast',
+    time: '1 hr ago',
+    status: 'resolved',
+    estimatedMinutes: null,
+  },
+];
+
+export const DISCOUNTS = [
+  {
+    id: 'd1',
+    productId: 'p2',
+    originalPrice: 99,
+    discountPercent: 40,
+    finalPrice: 59,
+    stock: 12,
+    expiryMinutes: 102, // minutes until product expires
+    aiInputs: {
+      weather: '🌧️ Heavy Rain',
+      traffic: '35%',
+      salesVelocity: '6/hr',
+      expiryHours: '1h 42m',
+      payday: false,
+    },
+    aiReasoning: 'Heavy rain reduces foot traffic by ~35%. At current velocity, 7 of 12 units will remain at expiry. Recommending 40% to accelerate sales.',
+    expectedSold: 11,
+    expectedWaste: 1,
+    wasteProbability: 8,
+    status: 'pending', // pending | active | expired
+  },
+  {
+    id: 'd2',
+    productId: 'p3',
+    originalPrice: 120,
+    discountPercent: 30,
+    finalPrice: 84,
+    stock: 18,
+    expiryMinutes: 200,
+    aiInputs: {
+      weather: '🌧️ Heavy Rain',
+      traffic: '42%',
+      salesVelocity: '5/hr',
+      expiryHours: '3h 20m',
+      payday: false,
+    },
+    aiReasoning: 'Moderate traffic expected. 30% discount expected to sell 15 of 18 units before expiry.',
+    expectedSold: 15,
+    expectedWaste: 3,
+    wasteProbability: 12,
+    status: 'active',
+  },
+  {
+    id: 'd3',
+    productId: 'p5',
+    originalPrice: 35,
+    discountPercent: 50,
+    finalPrice: 17,
+    stock: 14,
+    expiryMinutes: 55,
+    aiInputs: {
+      weather: '🌧️ Heavy Rain',
+      traffic: '28%',
+      salesVelocity: '5/hr',
+      expiryHours: '55m',
+      payday: false,
+    },
+    aiReasoning: 'Critical: only 55 minutes to expiry. Aggressive 50% discount needed to move all 14 units.',
+    expectedSold: 12,
+    expectedWaste: 2,
+    wasteProbability: 22,
+    status: 'pending',
+  },
+  {
+    id: 'd4',
+    productId: 'p7',
+    originalPrice: 80,
+    discountPercent: 25,
+    finalPrice: 60,
+    stock: 20,
+    expiryMinutes: 280,
+    aiInputs: {
+      weather: '🌧️ Heavy Rain',
+      traffic: '54%',
+      salesVelocity: '4/hr',
+      expiryHours: '4h 40m',
+      payday: false,
+    },
+    aiReasoning: 'Moderate action needed. 25% discount should clear sufficient stock before expiry.',
+    expectedSold: 16,
+    expectedWaste: 4,
+    wasteProbability: 18,
+    status: 'pending',
+  },
+];
+
+export const TRAFFIC_FORECAST = [
+  { hour: '12:00', predicted: 45, actual: 42 },
+  { hour: '13:00', predicted: 62, actual: 58 },
+  { hour: '14:00', predicted: 71, actual: 74 },
+  { hour: '15:00', predicted: 68, actual: 65 },
+  { hour: '16:00', predicted: 80, actual: 82 },
+  { hour: '17:00', predicted: 88, actual: 91 },
+  { hour: '18:00', predicted: 72, actual: null },
+  { hour: '19:00', predicted: 54, actual: null },
+  { hour: '20:00', predicted: 38, actual: null },
+  { hour: '21:00', predicted: 22, actual: null },
+];
+
+export const SALES_WASTE_CHART = [
+  { day: 'Mon', sales: 280000, waste: 4200 },
+  { day: 'Tue', sales: 245000, waste: 5100 },
+  { day: 'Wed', sales: 312000, waste: 3800 },
+  { day: 'Thu', sales: 298000, waste: 4600 },
+  { day: 'Fri', sales: 342000, waste: 3200 },
+  { day: 'Sat', sales: 410000, waste: 2900 },
+  { day: 'Sun', sales: 284520, waste: 2100 },
+];
+
+export const MONTHLY_IMPACT = [
+  { month: 'Jan', revenue: 8200, waste: 42 },
+  { month: 'Feb', revenue: 9450, waste: 37 },
+  { month: 'Mar', revenue: 11200, waste: 31 },
+  { month: 'Apr', revenue: 12450, waste: 26 },
+];
+
+export const KPI = {
+  wasteKg: 18.4,
+  wasteChange: -24, // % vs yesterday
+  savedRevenue: 12450,
+  savedRevenueChange: +18,
+  outOfStock: 7,
+  outOfStockCritical: 3,
+  discountedItemsSold: 86,
+  todayRevenue: 284520,
+  todayRevenueChange: +6,
+  aiDecisions: 142,
+  stockoutsPrevented: 17,
+  foodSavedItems: 86,
+  foodSavedKg: 18.4,
+};
+
+export const STAFF_TASKS = [
+  {
+    id: 'st1',
+    urgency: 'critical',
+    aisle: 'Aisle 4',
+    product: 'Fresh Milk',
+    emoji: '🥛',
+    detail: 'Only 3 left',
+    timeRemaining: '~22 min',
+    status: 'pending',
+  },
+  {
+    id: 'st2',
+    urgency: 'warning',
+    aisle: 'Aisle 3',
+    product: 'Salmon Sushi',
+    emoji: '🍣',
+    detail: '12 units expiring',
+    timeRemaining: '2 hrs',
+    status: 'pending',
+  },
+  {
+    id: 'st3',
+    urgency: 'warning',
+    aisle: 'Aisle 7',
+    product: 'Croissant',
+    emoji: '🥐',
+    detail: '14 units expiring',
+    timeRemaining: '1 hr',
+    status: 'notified',
+  },
+];
+
+export const NOTIFICATIONS = [
+  { id: 'n1', type: 'critical', title: 'Aisle 4 — Fresh Milk below threshold', time: '10 min ago' },
+  { id: 'n2', type: 'warning', title: 'Salmon Sushi: 12 units expire in 2h', time: '25 min ago' },
+  { id: 'n3', type: 'success', title: 'Restock Completed — Orange Juice (Alex)', time: '42 min ago' },
+  { id: 'n4', type: 'ai', title: 'AI Pricing: Salad discount raised 20% → 30%', time: '1 hr ago' },
+  { id: 'n5', type: 'warning', title: 'Croissant: 14 units expire in 1h', time: '32 min ago' },
+  { id: 'n6', type: 'ai', title: 'AI Forecast: Traffic -35% due to heavy rain', time: '2 hrs ago' },
+  { id: 'n7', type: 'success', title: 'Restock Completed — Sparkling Water (Ben)', time: '3 hrs ago' },
+  { id: 'n8', type: 'critical', title: 'Aisle 6 — Strawberries stock low (8 left)', time: '3 hrs ago' },
+];
